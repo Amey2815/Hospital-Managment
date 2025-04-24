@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import axios from 'axios';
 import { FaCalendarCheck, FaUser, FaUserMd, FaClock, FaNotesMedical } from 'react-icons/fa';
 import Sidebar from '../Sidebar/Sidebar';
-
+import { useNavigate } from 'react-router-dom';
 const ScheduleAppointment = ({ appointmentToEdit }) => {
   const url = "http://localhost:3000";
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const ScheduleAppointment = ({ appointmentToEdit }) => {
   const [patients, setPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,8 +42,11 @@ const ScheduleAppointment = ({ appointmentToEdit }) => {
     setLoading(true);
     try {
       if (appointmentToEdit) {
-        await axios.put(`${url}/api/appointment/update/${appointmentToEdit._id}`, formData);
-        alert('Appointment updated successfully');
+         await axios.put(`${url}/api/appointment/add/${appointmentToEdit._id}`, formData);
+        
+          alert('Appointment updated successfully');
+        navigate('/admin')
+        
       } else {
         await axios.post(`${url}/api/appointment/add`, formData);
         alert('Appointment scheduled successfully');

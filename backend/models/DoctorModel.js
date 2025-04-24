@@ -8,6 +8,6 @@ const DoctorSchema = new mongoose.Schema({
     experience:{type:String,required:true}
 })
 
-const DoctorModel = mongoose.model.doctor || mongoose.model("doctor",DoctorSchema)
+const DoctorModel = mongoose.model.doctor || mongoose.model("Doctor",DoctorSchema)
 
 export default DoctorModel

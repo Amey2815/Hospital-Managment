@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { FaCalendarAlt, FaEdit, FaTrash, FaSearch } from 'react-icons/fa';
 import ScheduleAppointment from './ScheduleAppointment';
+import { useNavigate } from 'react-router-dom'
 
 const ViewSchedule = () => {
   const url = "http://localhost:3000"
@@ -11,11 +12,12 @@ const ViewSchedule = () => {
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [viewMode, setViewMode] = useState('list'); // 'list' or 'calendar'
-
+  
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
         const response = await axios.get(`${url}/api/appointment/get`);
+        console.log(response.data)
         setAppointments(response.data.data);
       } catch (error) {
         alert('Failed to fetch appointments');
@@ -179,7 +181,7 @@ const ViewSchedule = () => {
               <motion.div
                 initial={{ y: 50 }}
                 animate={{ y: 0 }}
-                className="glass-container bg-slate-800/90 backdrop-blur-lg rounded-2xl p-8 max-w-2xl w-full"
+                className="glass-container bg-slate-800/90 backdrop-blur-lg rounded-2xl p-8  w-screen"
               >
                 <ScheduleAppointment 
                   appointmentToEdit={selectedAppointment}

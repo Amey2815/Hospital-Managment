@@ -11,11 +11,24 @@ const getAppointments = async (req, res) => {
   if (date) filter.date = date;
 
   try {
-    const appointments = await AppointmentModel.find(filter);
-    console.log('Fetched appointments:', appointments); // Debug log
-    res.status(200).json(appointments);
+    const appointments = await AppointmentModel.find(filter)
+      .populate('doctorId')
+      .populate('patientId');
+
+    // Transform the data to include patientName and doctorName
+    const transformedAppointments = appointments.map(appointment => ({
+      _id: appointment._id,
+      patientName: appointment.patientId?.name || 'Unknown',
+      doctorName: appointment.doctorId?.name || 'Unknown',
+      date: appointment.date,
+      time: appointment.time,
+      status: appointment.status,
+      description: appointment.description,
+    }));
+
+    res.status(200).json({ data: transformedAppointments });
   } catch (err) {
-    console.error('Actual error:', err); // Full error log
+    console.error('Error fetching appointments:', err);
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
