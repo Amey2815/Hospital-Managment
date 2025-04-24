@@ -60,7 +60,7 @@ const AddDoctor = () => {
                             Add New Doctor
                         </motion.h2>
 
-                        <form onSubmit={handleSubmit} className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-6 text-white">
                             {/* Name Field */}
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}

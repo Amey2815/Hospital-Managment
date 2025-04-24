@@ -44,7 +44,7 @@ const ViewSchedule = () => {
   );
 
   return (
-    <div className="p-8 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 min-h-screen">
+    <div className="p-8 text-white bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">

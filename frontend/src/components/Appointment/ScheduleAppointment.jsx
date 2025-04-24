@@ -74,7 +74,7 @@ const ScheduleAppointment = ({ appointmentToEdit }) => {
               {appointmentToEdit ? 'Edit Appointment' : 'New Appointment'}
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 text-white">
               {/* Rest of your form elements remain the same */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Patient Selection */}

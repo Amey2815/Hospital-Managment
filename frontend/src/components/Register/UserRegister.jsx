@@ -54,7 +54,7 @@ const UserRegister = () => {
                             Register User
                         </h2>
 
-                        <form onSubmit={handleSubmit} className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-6 text-white">
                             {[
                                 { icon: <FaUserTag />, name: 'name', label: 'Full Name', type: 'text' },
                                 { icon: <FaEnvelope />, name: 'email', label: 'Email Address', type: 'email' },
@@ -97,12 +97,12 @@ const UserRegister = () => {
                                         name="role"
                                         value={Data.role}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 appearance-none outline-none transition-all"
+                                        className="w-full px-4 py-3  bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 appearance-none outline-none transition-all"
                                         required
                                     >
-                                        <option value="patient">Patient</option>
-                                        <option value="doctor">Doctor</option>
-                                        <option value="admin">Admin</option>
+                                        <option className='text-black' value="patient">Patient</option>
+                                        <option className='text-black' value="doctor">Doctor</option>
+                                        <option className='text-black' value="admin">Admin</option>
                                     </select>
                                     <FaChevronDown className="absolute right-4 top-4 text-gray-400 pointer-events-none" />
                                 </div>
