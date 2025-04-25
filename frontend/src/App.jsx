@@ -11,6 +11,8 @@ import Register from './components/Register/Register';
 import UserRegister from './components/Register/UserRegister';
 import ViewSchedule from './components/Appointment/ViewSchedule';
 import ScheduleAppointment from './components/Appointment/ScheduleAppointment';
+import ViewDoctor from './components/Doctor/ViewDoctor';
+import EditDoctor from './components/Doctor/EditDoctor';
 
 function App() {
   const location = useLocation();
@@ -28,6 +30,8 @@ function App() {
         <Route path='/admin' element={<AdminPage />} />
         <Route path='/register' element={<Register/>}/>
         <Route path='/admin/doctor' element={<AddDoctor/>}/>
+        <Route path='/viewdoctor' element={<ViewDoctor/>} />
+        <Route path='/editdoctor/:id' element={<EditDoctor/>}/>
         <Route path='/admin/patient' element={<AddPatient />} />
         <Route path='/admin/register' element={<UserRegister />} />
         <Route path="/schedule" element={<ScheduleAppointment/>} />

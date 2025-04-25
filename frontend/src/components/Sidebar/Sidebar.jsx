@@ -23,7 +23,7 @@ const Sidebar = () => {
       icon: <FaUserMd />,
       subItems: [
         { title: 'Add Doctor', icon: <FaPlus />, link: '/admin/doctor' },
-        { title: 'Manage Doctors', icon: <FaListUl />, link: '#' }
+        { title: 'Manage Doctors', icon: <FaListUl />, link: '/viewdoctor' }
       ]
     },
     {

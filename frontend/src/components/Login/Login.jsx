@@ -50,7 +50,7 @@ const Login = () => {
           <motion.h2
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+            className="text-4xl font-bold text-white"
           >
             Welcome Back
           </motion.h2>
@@ -71,7 +71,7 @@ const Login = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
+              className="w-full px-4 py-3 text-white bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
               required
             />
           </motion.div>
@@ -90,7 +90,7 @@ const Login = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
+              className="w-full px-4 py-3 text-white bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
               required
             />
           </motion.div>
@@ -106,8 +106,8 @@ const Login = () => {
               <div className="h-5 w-5 border-2 border-white/50 border-t-transparent rounded-full animate-spin" />
             ) : (
               <>
-                <span>Continue</span>
-                <FaArrowRight className="text-sm" />
+                <span className='text-white' >Continue</span>
+                <FaArrowRight className="text-sm text-white" />
               </>
             )}
           </motion.button>

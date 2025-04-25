@@ -1,14 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import { motion } from 'framer-motion';
 import { FaUserMd, FaUsers, FaCalendarCheck, FaChartLine, FaPlus, FaCog } from 'react-icons/fa';
+import axios from 'axios';
 
 const AdminPage = () => {
+  const url = "http://localhost:3000"
+  const [doctor, setdoctor] = useState([])
+  const [patient, setpatient] = useState([])
+  const [appoint, setappoint] = useState([])
+  const [monthlygroth, setmonthlygroth] = useState([])
+  useEffect(() => {
+    const fetchdata = async ()=>{
+      try{
+        const doctor = await axios.get(`${url}/api/doctor/get`)
+        const patient = await axios.get(`${url}/api/patient/get`)
+        const appointment = await axios.get(`${url}/api/appointment/get`)
+        setdoctor(doctor.data.data)
+        setpatient(patient.data.data)
+        setappoint(appointment.data.data)
+      }
+      catch(error){
+        alert("error")
+      }
+    }
+   fetchdata();
+  },[])
+
+  
+
+
   const stats = [
-    { icon: <FaUserMd />, title: "Total Doctors", value: "245", color: "bg-purple-500" },
-    { icon: <FaUsers />, title: "Active Patients", value: "1,892", color: "bg-cyan-500" },
-    { icon: <FaCalendarCheck />, title: "Appointments", value: "326", color: "bg-pink-500" },
-    { icon: <FaChartLine />, title: "Monthly Growth", value: "+24%", color: "bg-orange-500" },
+    { icon: <FaUserMd />, title: "Total Doctors", value:`${doctor.length}` , color: "bg-purple-500" },
+    { icon: <FaUsers />, title: "Active Patients", value: `${patient.length}`, color: "bg-cyan-500" },
+    { icon: <FaCalendarCheck />, title: "Appointments", value: `${appoint.length}`, color: "bg-pink-500" },
+    // { icon: <FaChartLine />, title: "Monthly Growth", value: ``, color: "bg-orange-500" },
   ];
 
   return (
@@ -34,17 +60,11 @@ const AdminPage = () => {
             >
               Admin Dashboard
             </motion.h1>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-400/30"
-            >
-              <FaCog className="text-2xl text-cyan-400" />
-            </motion.button>
+            
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -84,23 +104,22 @@ const AdminPage = () => {
                 className="bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 rounded-xl flex items-center gap-2"
               >
                 <FaPlus />
-                <span>New Doctor</span>
+                <a href="/admin/doctor">New Doctor</a>
               </motion.button>
             </div>
 
             {/* Quick Actions Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {['Manage Users', 'Appointments', 'Reports', 'Settings'].map((action, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {['Manage Users', 'Appointments', 'pateint'].map((action, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
                   className="p-4 bg-white/5 rounded-xl border border-white/10 hover:border-cyan-400/30 cursor-pointer transition-all"
                 >
                   <div className="text-cyan-400 text-xl mb-2">
-                    {index === 0 && <FaUsers />}
-                    {index === 1 && <FaCalendarCheck />}
-                    {index === 2 && <FaChartLine />}
-                    {index === 3 && <FaCog />}
+                    {index === 0 && <a href="/admin/register"><FaUsers /></a>}
+                    {index === 1 && <a href="/viewschedule"><FaCalendarCheck /></a>}
+                    {index === 2 && <a href="/admin/patient"><FaUserMd /></a>}
                   </div>
                   <h3 className="font-semibold text-white">{action}</h3>
                   <p className="text-sm text-gray-400">View and manage {action.toLowerCase()}</p>
@@ -108,27 +127,7 @@ const AdminPage = () => {
               ))}
             </div>
 
-            {/* Recent Activity Section */}
-            <div className="mt-8 pt-8 border-t border-white/10">
-              <h3 className="text-lg font-semibold text-white mb-4">Recent Activity</h3>
-              <div className="space-y-4">
-                {['New patient registered', 'Appointment completed', 'Report generated', 'System updated'].map((activity, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 + index * 0.1 }}
-                    className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-cyan-400 rounded-full" />
-                      <span className="text-gray-300">{activity}</span>
-                    </div>
-                    <span className="text-sm text-gray-500">2h ago</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+            
           </motion.div>
         </div>
       </motion.div>

@@ -78,7 +78,8 @@ const ScheduleAppointment = ({ appointmentToEdit }) => {
               {/* Rest of your form elements remain the same */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Patient Selection */}
-                <motion.div className="group relative">
+
+                {!appointmentToEdit ? (<motion.div className="group relative">
                   <div className="flex items-center gap-3 mb-2 text-cyan-400">
                     <FaUser />
                     <label className="text-sm font-medium">Patient</label>
@@ -87,20 +88,21 @@ const ScheduleAppointment = ({ appointmentToEdit }) => {
                     name="patientId"
                     value={formData.patientId}
                     onChange={(e) => setFormData({ ...formData, patientId: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50"
+                    className="w-full px-4 py-3  bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50"
                     required
                   >
                     <option value="">Select Patient</option>
                     {patients && Array.isArray(patients) && patients.map(patient => (
-                      <option key={patient._id} value={patient._id}>
+                      <option className='text-black' key={patient._id} value={patient._id}>
                         {patient.name}
                       </option>
                     ))}
                   </select>
-                </motion.div>
+                </motion.div>) : <></> }
+                
 
                 {/* Doctor Selection */}
-                <motion.div className="group relative">
+                { !appointmentToEdit ? (<motion.div className="group relative">
                   <div className="flex items-center gap-3 mb-2 text-cyan-400">
                     <FaUserMd />
                     <label className="text-sm font-medium">Doctor</label>
@@ -114,12 +116,32 @@ const ScheduleAppointment = ({ appointmentToEdit }) => {
                   >
                     <option value="">Select Doctor</option>
                     {doctors && Array.isArray(doctors) && doctors.map(doctor => (
-                      <option key={doctor._id} value={doctor._id}>
+                      <option className='text-black' key={doctor._id} value={doctor._id}>
                         {doctor.name} ({doctor.specialization})
                       </option>
                     ))}
                   </select>
-                </motion.div>
+                </motion.div>): <></> }
+
+                {appointmentToEdit ? (<motion.div className="group relative">
+                  <div className="flex items-center gap-3 mb-2 text-cyan-400">
+                    <FaUserMd />
+                    <label className="text-sm font-medium">Status</label>
+                  </div>
+                  <select
+                    name="doctorId"
+                    value={formData.status}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50"
+                    required
+                  >
+                    <option className='text-black' value="">Select Status</option>
+                    <option className='text-black' value="scheduled">scheduled</option>
+                    <option className='text-black' value="completed">completed</option>
+                    <option className='text-black' value="cancelled">cancelled</option>
+                  </select>
+                </motion.div>): <></>}
+                
 
                 {/* Date and Time */}
                 <motion.div className="group relative">
