@@ -15,7 +15,8 @@ import ViewDoctor from './components/Doctor/ViewDoctor';
 import EditDoctor from './components/Doctor/EditDoctor';
 import ViewPatient from './components/Patient/ViewPatient';
 import EditPatient from './components/Patient/EditPatient';
-
+import StudentDashbord from './components/DashBoard/StudentDashboard'
+import StudAdd from './components/Patient/StudAdd';
 function App() {
   const location = useLocation();
   
@@ -30,11 +31,13 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/admin' element={<AdminPage />} />
+        <Route path='/patient' element={<StudentDashbord/>} />
         <Route path='/register' element={<Register/>}/>
         <Route path='/admin/doctor' element={<AddDoctor/>}/>
         <Route path='/viewdoctor' element={<ViewDoctor/>} />
         <Route path='/editdoctor/:id' element={<EditDoctor/>}/>
         <Route path='/admin/patient' element={<AddPatient />} />
+        <Route path='/addpatient' element={<StudAdd/>}/>
         <Route path='/editpatient/:id' element={<EditPatient/>}/>
         <Route path='/viewpatient' element={<ViewPatient />}/>
         <Route path='/admin/register' element={<UserRegister />} />
