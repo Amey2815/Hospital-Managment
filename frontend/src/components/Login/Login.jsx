@@ -16,9 +16,22 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await axios.post(`${url}/api/user/login`, { email, password });
-      if(response.data.success){
+      if (response.data.success) {
         localStorage.setItem('token', response.data.token);
-        navigate('/admin');
+        localStorage.setItem('role', response.data.role); // Save role too
+  
+        // Redirect based on role
+        if (response.data.role === 'admin') {
+          navigate('/admin');
+        } else if (response.data.role === 'doctor') {
+          navigate('/doctor');
+        } else if (response.data.role === 'patient') {
+          navigate('/patient');
+        } else {
+          navigate('/'); // default page
+        }
+      } else {
+        alert(response.data.message);
       }
     } catch (error) {
       alert('Login failed. Please check your credentials and try again.');
@@ -26,6 +39,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">

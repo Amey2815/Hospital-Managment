@@ -29,7 +29,7 @@ const Sidebar = () => {
       title: 'Appointment',
       icon: <FaCalendarAlt />,
       subItems: [
-        { title: 'View Appointments', icon: <FaListUl />, link: '/viewschedule' }
+        { title: 'View Appointments', icon: <FaListUl />, link: '/PatientView' }
       ]
     }
   ];
@@ -47,7 +47,7 @@ const Sidebar = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
       >
-        <a href="/">MediAdmin</a>
+        <a href="/">Patient Dashboard</a>
       </motion.h2>
 
       {menuItems.map((item, index) => (

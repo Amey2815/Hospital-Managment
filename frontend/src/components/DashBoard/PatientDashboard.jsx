@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from '../Sidebar/StudSidebar'; 
+import Sidebar from '../Sidebar/PatientSidebar'; 
 import { motion } from 'framer-motion';
 import { FaUser, FaCalendarCheck, FaHeartbeat } from 'react-icons/fa';
 import axios from 'axios';
 
 const PatientPage = () => {
   const url = "http://localhost:3000";
-  const [appointments, setAppointments] = useState([]);
+  
   const [profile, setProfile] = useState({});
   
   
@@ -66,7 +66,7 @@ const PatientPage = () => {
             {/* Quick Links */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
-                { label: "Book Appointment", link: "/admin/patient", icon: <FaCalendarCheck /> }
+                { label: "Book Appointment", link: "/addpatient", icon: <FaCalendarCheck /> }
               ].map((item, index) => (
                 <motion.div
                   key={index}
