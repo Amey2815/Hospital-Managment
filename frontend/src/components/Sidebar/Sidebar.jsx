@@ -31,7 +31,7 @@ const Sidebar = () => {
       icon: <FaUserInjured />,
       subItems: [
         { title: 'Add Patient', icon: <FaPlus />, link: '/admin/patient' },
-        { title: 'Manage Patients', icon: <FaListUl />, link: '/admin/viewpatient' }
+        { title: 'Manage Patients', icon: <FaListUl />, link: '/viewpatient' }
       ]
     },
     {

@@ -89,12 +89,7 @@ const ViewSchedule = () => {
           >
             List View
           </button>
-          <button
-            onClick={() => setViewMode('calendar')}
-            className={`px-4 py-2 rounded-lg ${viewMode === 'calendar' ? 'bg-cyan-500/20' : 'bg-white/5'}`}
-          >
-            Calendar View
-          </button>
+          
         </div>
 
         {/* Appointments List */}
@@ -159,15 +154,8 @@ const ViewSchedule = () => {
           </motion.div>
         )}
 
-        {/* Calendar View (Placeholder) */}
-        {viewMode === 'calendar' && (
-          <div className="glass-container bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 p-6">
-            {/* Implement calendar component here */}
-            <div className="text-center text-gray-400 py-12">
-              Calendar View (Implementation Pending)
-            </div>
-          </div>
-        )}
+        
+        
 
         {/* Add/Edit Modal */}
         <AnimatePresence>

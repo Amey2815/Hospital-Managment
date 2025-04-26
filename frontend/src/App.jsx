@@ -13,6 +13,8 @@ import ViewSchedule from './components/Appointment/ViewSchedule';
 import ScheduleAppointment from './components/Appointment/ScheduleAppointment';
 import ViewDoctor from './components/Doctor/ViewDoctor';
 import EditDoctor from './components/Doctor/EditDoctor';
+import ViewPatient from './components/Patient/ViewPatient';
+import EditPatient from './components/Patient/EditPatient';
 
 function App() {
   const location = useLocation();
@@ -33,6 +35,8 @@ function App() {
         <Route path='/viewdoctor' element={<ViewDoctor/>} />
         <Route path='/editdoctor/:id' element={<EditDoctor/>}/>
         <Route path='/admin/patient' element={<AddPatient />} />
+        <Route path='/editpatient/:id' element={<EditPatient/>}/>
+        <Route path='/viewpatient' element={<ViewPatient />}/>
         <Route path='/admin/register' element={<UserRegister />} />
         <Route path="/schedule" element={<ScheduleAppointment/>} />
         <Route path="/viewschedule" element={<ViewSchedule/>} />

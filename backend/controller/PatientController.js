@@ -34,4 +34,53 @@ const GetPatients = async(req,res)=>{
 }
 
 
-export { AddPatient , GetPatients }
+const updatePatient = async (req, res) => {
+    try {
+      const updatedPatient = await PatientModel.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
+      if (updatedPatient) {
+        res.json({ success: true, message: "Patient updated successfully" });
+      } else {
+        res.json({ success: false, message: "Patient not found" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.json({ success: false, message: "Failed to update patient" });
+    }
+  };
+  
+  // Delete Patient
+  const deletePatient = async (req, res) => {
+    try {
+      const deletedPatient = await PatientModel.findByIdAndDelete(req.params.id);
+      if (deletedPatient) {
+        res.json({ success: true, message: "Patient deleted successfully" });
+      } else {
+        res.json({ success: false, message: "Patient not found" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.json({ success: false, message: "Failed to delete patient" });
+    }
+  };
+
+  const getPatientById = async (req, res) => {
+    try {
+      const patient = await PatientModel.findById(req.params.id);
+      if (patient) {
+        res.json({ success: true, data: patient });
+      } else {
+        res.json({ success: false, message: "Patient not found" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.json({ success: false, message: "Error fetching patient" });
+    }
+  };
+  
+
+
+export { AddPatient , GetPatients , updatePatient , deletePatient ,getPatientById }
