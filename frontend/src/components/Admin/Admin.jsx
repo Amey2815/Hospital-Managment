@@ -10,6 +10,7 @@ const AdminPage = () => {
   const [patient, setpatient] = useState([])
   const [appoint, setappoint] = useState([])
   const [monthlygroth, setmonthlygroth] = useState([])
+
   useEffect(() => {
     const fetchdata = async ()=>{
       try{
@@ -24,21 +25,17 @@ const AdminPage = () => {
         alert("error")
       }
     }
-   fetchdata();
+    fetchdata();
   },[])
-
-  
-
 
   const stats = [
     { icon: <FaUserMd />, title: "Total Doctors", value:`${doctor.length}` , color: "bg-purple-500" },
     { icon: <FaUsers />, title: "Active Patients", value: `${patient.length}`, color: "bg-cyan-500" },
     { icon: <FaCalendarCheck />, title: "Appointments", value: `${appoint.length}`, color: "bg-pink-500" },
-    // { icon: <FaChartLine />, title: "Monthly Growth", value: ``, color: "bg-orange-500" },
   ];
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="flex min-h-screen bg-gradient-to-br from-white via-blue-100 to-blue-300">
       <Sidebar />
 
       <motion.div
@@ -56,11 +53,10 @@ const AdminPage = () => {
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+              className="text-4xl font-bold text-blue-700"
             >
               Admin Dashboard
             </motion.h1>
-            
           </div>
 
           {/* Stats Grid */}
@@ -71,7 +67,7 @@ const AdminPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-cyan-400/30 transition-all group"
+                className="bg-white shadow-md p-6 rounded-2xl border border-blue-200 hover:border-blue-400/30 transition-all group"
               >
                 <div className="flex items-center justify-between">
                   <div className={`p-4 rounded-lg ${stat.color} shadow-lg`}>
@@ -79,7 +75,7 @@ const AdminPage = () => {
                   </div>
                   <div className="text-right">
                     <p className="text-sm text-gray-400">{stat.title}</p>
-                    <p className="text-3xl font-bold text-white">{stat.value}</p>
+                    <p className="text-3xl font-bold text-blue-700">{stat.value}</p>
                   </div>
                 </div>
               </motion.div>
@@ -91,17 +87,17 @@ const AdminPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 p-8 shadow-2xl"
+            className="bg-white p-8 rounded-2xl border border-blue-200 shadow-2xl"
           >
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="text-2xl font-semibold text-white">Welcome Admin</h2>
+                <h2 className="text-2xl font-semibold text-blue-700">Welcome Admin</h2>
                 <p className="text-gray-400">Manage your hospital operations efficiently</p>
               </div>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 rounded-xl flex items-center gap-2"
+                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl flex items-center gap-2"
               >
                 <FaPlus />
                 <a href="/admin/doctor">New Doctor</a>
@@ -110,24 +106,22 @@ const AdminPage = () => {
 
             {/* Quick Actions Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {['Manage Users', 'Appointments', 'pateint'].map((action, index) => (
+              {['Manage Users', 'Appointments', 'Patient'].map((action, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
-                  className="p-4 bg-white/5 rounded-xl border border-white/10 hover:border-cyan-400/30 cursor-pointer transition-all"
+                  className="p-4 bg-gradient-to-br from-blue-200 via-blue-100 to-blue-200 rounded-xl border border-white/10 hover:border-blue-400/30 cursor-pointer transition-all"
                 >
-                  <div className="text-cyan-400 text-xl mb-2">
+                  <div className="text-blue-500 text-xl mb-2">
                     {index === 0 && <a href="/admin/register"><FaUsers /></a>}
                     {index === 1 && <a href="/viewschedule"><FaCalendarCheck /></a>}
                     {index === 2 && <a href="/admin/patient"><FaUserMd /></a>}
                   </div>
-                  <h3 className="font-semibold text-white">{action}</h3>
+                  <h3 className="font-semibold text-blue-600">{action}</h3>
                   <p className="text-sm text-gray-400">View and manage {action.toLowerCase()}</p>
                 </motion.div>
               ))}
             </div>
-
-            
           </motion.div>
         </div>
       </motion.div>

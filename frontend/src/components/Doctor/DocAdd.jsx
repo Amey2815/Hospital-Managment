@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Sidebar from '../Sidebar/Sidebar';
 import { FaUserMd, FaStethoscope, FaPhone, FaEnvelope, FaBriefcase } from 'react-icons/fa';
-import axios from 'axios'
+import axios from 'axios';
 import DoctorSidebar from '../Sidebar/DoctorSidebar';
 
 const AddDoctor = () => {
-    const url = "http://localhost:3000"
+    const url = "http://localhost:3000";
     const [doctorData, setDoctorData] = useState({
         name: '',
         specialization: '',
@@ -22,62 +21,59 @@ const AddDoctor = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // API call logic here
-        const responese = await axios.post(`${url}/api/doctor/add`,doctorData)
-        if(responese.data.success){
-            alert("data added successfully");
-            setDoctorData({ name: '', specialization: '', contact: '', email: '', experience: '' });
+        const response = await axios.post(`${url}/api/doctor/add`, doctorData);
+        if (response.data.success) {
+            alert("Doctor added successfully");
+            setDoctorData({ name: '', specialization: '', number: '', email: '', experience: '' });
+        } else {
+            alert("Error adding doctor");
         }
-        else{
-            alert("error")
-        }
-        
     };
 
     return (
-        <div>
+        <div className="bg-white pl-60 min-h-screen flex">
             <DoctorSidebar />
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className=" overflow-hidden flex justify-center items-center pl-60 min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-10"
+                className="flex flex-1 justify-center items-center p-10"
             >
                 <div className="relative w-full max-w-2xl mx-auto">
-                    {/* Animated background elements */}
-                    <div className="absolute -top-32 -right-32 w-64 h-64 bg-cyan-500/20 rounded-full blur-2xl" />
-                    <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full blur-2xl" />
+                    {/* Decorative background circles */}
+                    <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-300/20 rounded-full blur-3xl" />
+                    <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-cyan-300/20 rounded-full blur-3xl" />
 
                     <motion.div
                         initial={{ scale: 0.95, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className="glass-container bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 shadow-2xl p-8"
+                        className="bg-blue-50 rounded-2xl border border-blue-100 shadow-2xl p-8"
                     >
                         <motion.h2
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+                            className="text-3xl font-bold text-center mb-8 text-blue-600"
                         >
                             <FaUserMd className="inline-block mr-3" />
                             Add New Doctor
                         </motion.h2>
 
-                        <form onSubmit={handleSubmit} className="space-y-6 text-white">
+                        <form onSubmit={handleSubmit} className="space-y-6 text-blue-700">
                             {/* Name Field */}
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 className="group relative"
                             >
-                                <div className="flex items-center gap-3 mb-2 text-cyan-400">
+                                <div className="flex items-center gap-3 mb-2 text-blue-500">
                                     <FaUserMd />
-                                    <label className="text-sm font-medium text-gray-300">Full Name</label>
+                                    <label className="text-sm font-medium">Full Name</label>
                                 </div>
                                 <input
                                     type="text"
                                     name="name"
                                     value={doctorData.name}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-white rounded-lg border border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-300 outline-none transition-all"
                                     required
                                 />
                             </motion.div>
@@ -89,16 +85,16 @@ const AddDoctor = () => {
                                 transition={{ delay: 0.1 }}
                                 className="group relative"
                             >
-                                <div className="flex items-center gap-3 mb-2 text-cyan-400">
+                                <div className="flex items-center gap-3 mb-2 text-blue-500">
                                     <FaStethoscope />
-                                    <label className="text-sm font-medium text-gray-300">Specialization</label>
+                                    <label className="text-sm font-medium">Specialization</label>
                                 </div>
                                 <input
                                     type="text"
                                     name="specialization"
                                     value={doctorData.specialization}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-white rounded-lg border border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-300 outline-none transition-all"
                                     required
                                 />
                             </motion.div>
@@ -110,16 +106,16 @@ const AddDoctor = () => {
                                 transition={{ delay: 0.2 }}
                                 className="group relative"
                             >
-                                <div className="flex items-center gap-3 mb-2 text-cyan-400">
+                                <div className="flex items-center gap-3 mb-2 text-blue-500">
                                     <FaPhone />
-                                    <label className="text-sm font-medium text-gray-300">Contact Number</label>
+                                    <label className="text-sm font-medium">Contact Number</label>
                                 </div>
                                 <input
                                     type="text"
                                     name="number"
                                     value={doctorData.number}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-white rounded-lg border border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-300 outline-none transition-all"
                                     required
                                 />
                             </motion.div>
@@ -131,16 +127,16 @@ const AddDoctor = () => {
                                 transition={{ delay: 0.3 }}
                                 className="group relative"
                             >
-                                <div className="flex items-center gap-3 mb-2 text-cyan-400">
+                                <div className="flex items-center gap-3 mb-2 text-blue-500">
                                     <FaEnvelope />
-                                    <label className="text-sm font-medium text-gray-300">Email Address</label>
+                                    <label className="text-sm font-medium">Email Address</label>
                                 </div>
                                 <input
                                     type="email"
                                     name="email"
                                     value={doctorData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-white rounded-lg border border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-300 outline-none transition-all"
                                     required
                                 />
                             </motion.div>
@@ -152,16 +148,16 @@ const AddDoctor = () => {
                                 transition={{ delay: 0.4 }}
                                 className="group relative"
                             >
-                                <div className="flex items-center gap-3 mb-2 text-cyan-400">
+                                <div className="flex items-center gap-3 mb-2 text-blue-500">
                                     <FaBriefcase />
-                                    <label className="text-sm font-medium text-gray-300">Years of Experience</label>
+                                    <label className="text-sm font-medium">Years of Experience</label>
                                 </div>
                                 <input
                                     type="number"
                                     name="experience"
                                     value={doctorData.experience}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-white rounded-lg border border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-300 outline-none transition-all"
                                     required
                                 />
                             </motion.div>
@@ -170,7 +166,7 @@ const AddDoctor = () => {
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 type="submit"
-                                className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-semibold text-lg shadow-lg hover:shadow-cyan-500/20 transition-all"
+                                className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-semibold text-lg text-white shadow-lg hover:shadow-cyan-500/40 transition-all"
                             >
                                 Add Doctor
                             </motion.button>

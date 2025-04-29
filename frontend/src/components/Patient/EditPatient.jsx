@@ -1,3 +1,4 @@
+// ✅ EditPatient.jsx with blue & white background
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,15 +10,9 @@ const EditPatient = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const url = "http://localhost:3000";
-  
+
   const [patientData, setPatientData] = useState({
-    name: '',
-    age: '',
-    gender: '',
-    contact: '',
-    email: '',
-    address: '',
-    medicalHistory: ''
+    name: '', age: '', gender: '', contact: '', email: '', address: '', medicalHistory: ''
   });
 
   useEffect(() => {
@@ -48,7 +43,7 @@ const EditPatient = () => {
       const res = await axios.put(`${url}/api/patient/update/${id}`, patientData);
       if (res.data.success) {
         alert('Patient updated successfully!');
-        navigate('/viewpatient'); // Change as per your routing
+        navigate('/viewpatient');
       } else {
         alert('Update failed.');
       }
@@ -73,27 +68,24 @@ const EditPatient = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className=" overflow-hidden flex justify-center items-center flex-1 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 min-h-screen px-4 sm:px-6 md:px-10 py-10"
+        className="overflow-hidden flex justify-center items-center flex-1 bg-gradient-to-br from-white via-blue-100 to-white min-h-screen px-4 sm:px-6 md:px-10 py-10"
       >
         <div className="relative w-full max-w-lg">
-          <div className="absolute -top-32 -right-32 w-64 h-64 bg-cyan-500/20 rounded-full blur-2xl" />
-          <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full blur-2xl" />
-
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 shadow-2xl p-6 sm:p-8"
+            className="bg-white rounded-2xl border border-blue-100 shadow-xl p-8"
           >
             <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+              className="text-3xl font-bold text-center mb-8 text-blue-600"
             >
-              <FaUser className="inline-block mr-2 sm:mr-3" />
+              <FaUser className="inline-block mr-3" />
               Edit Patient Info
             </motion.h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6 text-white">
+            <form onSubmit={handleSubmit} className="space-y-6 text-gray-800">
               {formFields.map((field, index) => (
                 <motion.div
                   key={field.name}
@@ -102,9 +94,9 @@ const EditPatient = () => {
                   transition={{ delay: index * 0.1 }}
                   className="group"
                 >
-                  <div className="flex items-center gap-2 sm:gap-3 mb-2 text-cyan-400">
+                  <div className="flex items-center gap-3 mb-2 text-blue-500">
                     {field.icon}
-                    <label className="text-sm font-medium text-gray-300">{field.label}</label>
+                    <label className="text-sm font-medium">{field.label}</label>
                   </div>
 
                   {field.type === 'select' ? (
@@ -112,20 +104,20 @@ const EditPatient = () => {
                       name={field.name}
                       value={patientData[field.name]}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 appearance-none outline-none transition-all"
+                      className="w-full px-4 py-3 bg-white rounded-lg border border-blue-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition-all"
                       required
                     >
-                      <option className='text-black' value="">Select Gender</option>
-                      <option className='text-black' value="male">Male</option>
-                      <option className='text-black' value="female">Female</option>
-                      <option className='text-black' value="other">Other</option>
+                      <option value="">Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
                     </select>
                   ) : field.type === 'textarea' ? (
                     <textarea
                       name={field.name}
                       value={patientData[field.name]}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all h-32"
+                      className="w-full px-4 py-3 bg-white rounded-lg border border-blue-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition-all h-32"
                       required
                     />
                   ) : (
@@ -134,7 +126,7 @@ const EditPatient = () => {
                       name={field.name}
                       value={patientData[field.name]}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
+                      className="w-full px-4 py-3 bg-white rounded-lg border border-blue-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition-all"
                       required
                     />
                   )}
@@ -145,7 +137,7 @@ const EditPatient = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg font-semibold text-lg shadow-lg hover:shadow-cyan-500/20 transition-all"
+                className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-semibold text-lg shadow-md hover:shadow-green-300 transition-all"
               >
                 Update Patient
               </motion.button>

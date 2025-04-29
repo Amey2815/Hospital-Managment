@@ -39,100 +39,98 @@ const DoctorPage = () => {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      <DoctorSidebar />
+    <div className="flex min-h-screen bg-gradient-to-br from-blue-100 to-white">
+  <DoctorSidebar />
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex-1 p-8 ml-64 relative overflow-hidden"
-      >
-        {/* Animated background elements */}
-        <div className="absolute -top-32 -right-32 w-64 h-64 bg-cyan-500/20 rounded-full blur-2xl" />
-        <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full blur-2xl" />
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    className="flex-1 p-8 ml-64 relative overflow-hidden"
+  >
+    {/* Light decorative background elements */}
+    <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-300/30 rounded-full blur-2xl" />
+    <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-white/40 rounded-full blur-2xl" />
 
-        <div className="relative z-10">
-          <div className="flex items-center justify-between mb-8">
-            <motion.h1
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
-            >
-              Doctor Dashboard
-            </motion.h1>
-            
-          </div>
+    <div className="relative z-10">
+      <div className="flex items-center justify-between mb-8">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent"
+        >
+          Doctor Dashboard
+        </motion.h1>
+      </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-cyan-400/30 transition-all group"
-              >
-                <div className="flex items-center justify-between">
-                  <div className={`p-4 rounded-lg ${stat.color} shadow-lg`}>
-                    {stat.icon}
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm text-gray-400">{stat.title}</p>
-                    <p className="text-3xl font-bold text-white">{stat.value}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Main Content Card */}
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {stats.map((stat, index) => (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 p-8 shadow-2xl"
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all group"
           >
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-2xl font-semibold text-white">Welcome Admin</h2>
-                <p className="text-gray-400">Manage your hospital operations efficiently</p>
+            <div className="flex items-center justify-between">
+              <div className={`p-4 rounded-lg ${stat.color} text-white shadow`}>
+                {stat.icon}
               </div>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 rounded-xl flex items-center gap-2"
-              >
-                <FaPlus />
-                <a href="/admin/doctor">New Doctor</a>
-              </motion.button>
+              <div className="text-right">
+                <p className="text-sm text-gray-600">{stat.title}</p>
+                <p className="text-3xl font-bold text-gray-800">{stat.value}</p>
+              </div>
             </div>
-
-            {/* Quick Actions Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {['Manage Users', 'Appointments', 'pateint'].map((action, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ y: -5 }}
-                  className="p-4 bg-white/5 rounded-xl border border-white/10 hover:border-cyan-400/30 cursor-pointer transition-all"
-                >
-                  <div className="text-cyan-400 text-xl mb-2">
-                    {index === 0 && <a href="/admin/register"><FaUsers /></a>}
-                    {index === 1 && <a href="/viewschedule"><FaCalendarCheck /></a>}
-                    {index === 2 && <a href="/admin/patient"><FaUserMd /></a>}
-                  </div>
-                  <h3 className="font-semibold text-white">{action}</h3>
-                  <p className="text-sm text-gray-400">View and manage {action.toLowerCase()}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            
           </motion.div>
+        ))}
+      </div>
+
+      {/* Main Content Card */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className="bg-white rounded-2xl border border-gray-200 p-8 shadow-xl"
+      >
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-800">Welcome Admin</h2>
+            <p className="text-gray-500">Manage your hospital operations efficiently</p>
+          </div>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-xl flex items-center gap-2"
+          >
+            <FaPlus />
+            <a href="/admin/doctor">New Doctor</a>
+          </motion.button>
+        </div>
+
+        {/* Quick Actions Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {['Manage Users', 'Appointments', 'pateint'].map((action, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ y: -5 }}
+              className="p-4 bg-blue-50 rounded-xl border border-blue-200 hover:border-blue-400 cursor-pointer transition-all"
+            >
+              <div className="text-blue-600 text-xl mb-2">
+                {index === 0 && <a href="/admin/register"><FaUsers /></a>}
+                {index === 1 && <a href="/viewschedule"><FaCalendarCheck /></a>}
+                {index === 2 && <a href="/admin/patient"><FaUserMd /></a>}
+              </div>
+              <h3 className="font-semibold text-gray-800">{action}</h3>
+              <p className="text-sm text-gray-500">View and manage {action.toLowerCase()}</p>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </div>
+  </motion.div>
+</div>
+
   );
 };
 

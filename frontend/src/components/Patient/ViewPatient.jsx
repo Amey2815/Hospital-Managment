@@ -1,3 +1,4 @@
+// ✅ ViewPatient.jsx with blue & white background
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
@@ -31,7 +32,7 @@ const ViewPatient = () => {
         const res = await axios.delete(`${url}/api/patient/delete/${id}`);
         if (res.data.success) {
           alert('Patient deleted successfully!');
-          fetchPatients(); // Refresh the list
+          fetchPatients();
         }
       } catch (error) {
         alert('Failed to delete patient.');
@@ -44,15 +45,7 @@ const ViewPatient = () => {
   };
 
   const handleCopy = (patient) => {
-    const text = `
-      Name: ${patient.name}
-      Age: ${patient.age}
-      Gender: ${patient.gender}
-      Contact: ${patient.contact}
-      Email: ${patient.email}
-      Address: ${patient.address}
-      Medical History: ${patient.medicalHistory}
-    `;
+    const text = `Name: ${patient.name}\nAge: ${patient.age}\nGender: ${patient.gender}\nContact: ${patient.contact}\nEmail: ${patient.email}\nAddress: ${patient.address}\nMedical History: ${patient.medicalHistory}`;
     navigator.clipboard.writeText(text);
     alert('Patient details copied!');
   };
@@ -63,19 +56,19 @@ const ViewPatient = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="overflow-x-auto min-h-screen pl-70 p-10 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"
+        className="overflow-x-auto min-h-screen pl-70 p-10 bg-gradient-to-br from-white via-blue-100 to-white"
       >
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-3xl font-bold text-white mb-8 text-center"
+          className="text-3xl font-bold text-blue-600 mb-8 text-center"
         >
           Patient List
         </motion.h2>
 
-        <div className="bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-6 shadow-2xl">
-          <table className="min-w-full text-sm text-white">
-            <thead className="border-b border-white/10">
+        <div className="bg-white rounded-xl border border-blue-100 p-6 shadow-lg">
+          <table className="min-w-full text-sm text-gray-800">
+            <thead className="border-b border-blue-200">
               <tr>
                 <th className="py-3 px-4">Name</th>
                 <th className="py-3 px-4">Age</th>
@@ -92,7 +85,7 @@ const ViewPatient = () => {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="hover:bg-white/10 transition-all text-center"
+                  className="hover:bg-blue-50 transition-all text-center"
                 >
                   <td className="py-3 px-4">{patient.name}</td>
                   <td className="py-3 px-4">{patient.age}</td>
@@ -102,19 +95,19 @@ const ViewPatient = () => {
                   <td className="py-3 px-4 flex justify-center items-center gap-4">
                     <button
                       onClick={() => handleEdit(patient._id)}
-                      className="text-blue-400 hover:text-blue-600 transition-all"
+                      className="text-blue-500 hover:text-blue-700 transition-all"
                     >
                       <FaEdit />
                     </button>
                     <button
                       onClick={() => handleDelete(patient._id)}
-                      className="text-red-400 hover:text-red-600 transition-all"
+                      className="text-red-500 hover:text-red-700 transition-all"
                     >
                       <FaTrash />
                     </button>
                     <button
                       onClick={() => handleCopy(patient)}
-                      className="text-green-400 hover:text-green-600 transition-all"
+                      className="text-green-500 hover:text-green-700 transition-all"
                     >
                       <FaCopy />
                     </button>
@@ -125,7 +118,7 @@ const ViewPatient = () => {
           </table>
 
           {patients.length === 0 && (
-            <p className="text-center py-10 text-gray-400">No patients found.</p>
+            <p className="text-center py-10 text-blue-500">No patients found.</p>
           )}
         </div>
       </motion.div>

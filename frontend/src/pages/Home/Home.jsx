@@ -1,38 +1,50 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { assets } from '../../assets/asstes';
 
 const Home = () => {
   return (
-    
-    <div className="h-screen bg-gradient-to-br from-blue-800 via-blue-900 to-gray-900 text-white flex flex-col justify-center items-center px-4">
-      <motion.h1
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="text-5xl md:text-6xl font-extrabold mb-6 text-center"
-      >
-        Welcome to Our <span className="text-blue-300">Hospital</span> Management System
-      </motion.h1>
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-100 to-blue-200 flex items-center justify-center px-6 py-12">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-12 max-w-6xl w-full">
+        
+        {/* Text Section */}
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="w-full md:w-1/2 text-center md:text-left"
+        >
+          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-700 mb-6 leading-tight">
+            Welcome to Our <br />
+            <span className="text-blue-500">Hospital Management System</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-700 mb-8">
+            A smart and secure platform to streamline healthcare operations and improve patient outcomes.
+          </p>
+          <motion.a
+            href="/login"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white text-lg font-semibold px-8 py-4 rounded-full shadow-md hover:shadow-xl transition"
+          >
+            Start Appointment
+          </motion.a>
+        </motion.div>
 
-      <motion.p
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        className="text-xl md:text-2xl text-center max-w-xl mb-10 text-blue-100"
-      >
-        A smart and secure platform for better healthcare management.
-      </motion.p>
-
-      <motion.div
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="bg-gradient-to-r from-blue-600 to-blue-400 px-8 py-4 text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
-      >
-        <a href="/login">Start Appointment</a>
-      </motion.div>
+        {/* Image Section */}
+        <motion.div
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="w-full md:w-1/2"
+        >
+          <img
+            src={assets.hospitalImg}
+            alt="Hospital"
+            className="rounded-3xl shadow-2xl w-full object-cover max-h-[500px]"
+          />
+        </motion.div>
+      </div>
     </div>
   );
 };

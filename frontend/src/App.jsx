@@ -24,6 +24,7 @@ import DoctorView from './components/Doctor/DocView'
 import DoctorEdit from './components/Doctor/DocEdit'
 import DocShedule from './components/Appointment/DocSchedule';
 import DocView from './components/Appointment/DocView';
+import Footer from './components/Footer/Footer';
 function App() {
   const location = useLocation();
 
@@ -67,6 +68,9 @@ function App() {
 
         <Route path='/PatientView' element={<PatientView />} />
       </Routes>
+
+      {hideNavbarRoutes.includes(location.pathname) && <Footer/>}
+      
     </>
   );
 }

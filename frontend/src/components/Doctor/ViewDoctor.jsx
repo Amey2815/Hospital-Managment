@@ -2,7 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import { FaUserMd, FaStethoscope, FaPhone, FaEnvelope, FaBriefcase, FaCopy, FaEdit, FaTrash } from 'react-icons/fa';
+import {
+    FaUserMd,
+    FaStethoscope,
+    FaPhone,
+    FaEnvelope,
+    FaBriefcase,
+    FaCopy,
+    FaEdit,
+    FaTrash
+} from 'react-icons/fa';
 
 const ViewDoctor = () => {
     const url = "http://localhost:3000";
@@ -45,28 +54,24 @@ const ViewDoctor = () => {
         }
     };
 
-    const handleEdit = (id) => {
-        // This could redirect to an EditDoctor page or open a modal
-        alert(`Edit doctor with ID: ${id}`);
-    };
-
     return (
         <div>
             <Sidebar />
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="overflow-hidden flex justify-center items-start pl-64 min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-10"
+                className="overflow-hidden flex justify-center items-start pl-64 min-h-screen bg-gradient-to-br from-white via-blue-100 to-white p-10"
             >
                 <div className="relative w-full max-w-6xl mx-auto">
+
                     {/* Background Glow */}
-                    <div className="absolute -top-32 -right-32 w-64 h-64 bg-cyan-500/20 rounded-full blur-2xl" />
-                    <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full blur-2xl" />
+                    <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-300/30 rounded-full blur-2xl" />
+                    <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-cyan-300/30 rounded-full blur-2xl" />
 
                     <motion.h2
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="text-3xl font-bold text-center mb-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+                        className="text-3xl font-bold text-center mb-10 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent"
                     >
                         <FaUserMd className="inline-block mr-3" />
                         Doctor Directory
@@ -80,15 +85,15 @@ const ViewDoctor = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.05 }}
-                                className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl shadow-lg text-white space-y-2"
+                                className="bg-white border border-blue-100 p-6 rounded-2xl shadow-md text-gray-800 space-y-3"
                             >
-                                <div className="flex items-center justify-between mb-2 text-cyan-400">
+                                <div className="flex items-center justify-between mb-2 text-blue-600">
                                     <div className="flex items-center gap-2">
                                         <FaUserMd className="text-2xl" />
                                         <h3 className="text-xl font-bold">{doc.name}</h3>
                                     </div>
                                     <div className="flex gap-3">
-                                        <button  className="hover:text-yellow-400">
+                                        <button className="hover:text-yellow-500">
                                             <a href={`/editdoctor/${doc._id}`}><FaEdit /></a>
                                         </button>
                                         <button onClick={() => handleDelete(doc._id)} className="hover:text-red-500">
@@ -96,25 +101,25 @@ const ViewDoctor = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <p className="flex items-center gap-2 text-gray-300">
-                                    <FaStethoscope className="text-cyan-400" /> {doc.specialization}
+                                <p className="flex items-center gap-2 text-gray-700">
+                                    <FaStethoscope className="text-blue-500" /> {doc.specialization}
                                 </p>
-                                <p className="flex items-center gap-2 text-gray-300">
-                                    <FaPhone className="text-cyan-400" /> {doc.number}
+                                <p className="flex items-center gap-2 text-gray-700">
+                                    <FaPhone className="text-blue-500" /> {doc.number}
                                 </p>
-                                <p className="flex items-center gap-2 text-gray-300 justify-between">
+                                <p className="flex items-center gap-2 text-gray-700 justify-between">
                                     <span className="flex items-center gap-2">
-                                        <FaEnvelope className="text-cyan-400" /> {doc.email}
+                                        <FaEnvelope className="text-blue-500" /> {doc.email}
                                     </span>
                                     <button
                                         onClick={() => copyToClipboard(doc.email)}
-                                        className="hover:text-cyan-400"
+                                        className="hover:text-blue-600"
                                     >
                                         <FaCopy />
                                     </button>
                                 </p>
-                                <p className="flex items-center gap-2 text-gray-300">
-                                    <FaBriefcase className="text-cyan-400" /> {doc.experience} years experience
+                                <p className="flex items-center gap-2 text-gray-700">
+                                    <FaBriefcase className="text-blue-500" /> {doc.experience} years experience
                                 </p>
                             </motion.div>
                         ))}

@@ -60,28 +60,27 @@ const EditDoctor = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="overflow-hidden flex justify-center items-center pl-60 min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-10"
+        className="overflow-hidden flex justify-center items-center pl-60 min-h-screen bg-gradient-to-br from-white via-blue-100 to-white p-10"
       >
         <div className="relative w-full max-w-2xl mx-auto">
-          <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-500/20 rounded-full blur-2xl" />
-          <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full blur-2xl" />
+          <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-300/30 rounded-full blur-2xl" />
+          <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-cyan-300/30 rounded-full blur-2xl" />
 
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="glass-container bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 shadow-2xl p-8"
+            className="bg-white rounded-2xl border border-blue-100 shadow-2xl p-8"
           >
             <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+              className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent"
             >
               <FaUserMd className="inline-block mr-3" />
               Edit Doctor
             </motion.h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6 text-white">
-              {/* Fields same as AddDoctor */}
+            <form onSubmit={handleSubmit} className="space-y-6 text-gray-800">
               {[
                 { icon: FaUserMd, label: "Full Name", name: "name", type: "text" },
                 { icon: FaStethoscope, label: "Specialization", name: "specialization", type: "text" },
@@ -96,16 +95,16 @@ const EditDoctor = () => {
                   transition={{ delay: idx * 0.1 }}
                   className="group relative"
                 >
-                  <div className="flex items-center gap-3 mb-2 text-cyan-400">
+                  <div className="flex items-center gap-3 mb-2 text-blue-600">
                     <Icon />
-                    <label className="text-sm font-medium text-gray-300">{label}</label>
+                    <label className="text-sm font-medium">{label}</label>
                   </div>
                   <input
                     type={type}
                     name={name}
                     value={doctorData[name]}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 outline-none transition-all"
+                    className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition-all"
                     required
                   />
                 </motion.div>
@@ -115,7 +114,7 @@ const EditDoctor = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg font-semibold text-lg shadow-lg hover:shadow-green-500/20 transition-all"
+                className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-semibold text-lg shadow-lg hover:shadow-green-500/20 transition-all"
               >
                 Update Doctor
               </motion.button>
