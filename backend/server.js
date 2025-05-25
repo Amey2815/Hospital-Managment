@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { ConnectDB } from './config/db.js';
+import mongoose from 'mongoose';
 import UserRouter from './routes/UserRouter.js';
 import dotenv from 'dotenv'
 import PatientRouter from './routes/PatientRouter.js';
@@ -9,7 +9,7 @@ import AppointRouter from './routes/AppointmentRouter.js';
 dotenv.config()
 
 const app = express();
-const port = 3000;
+
 
 app.use(cors());
 app.use(express.json());
@@ -22,12 +22,20 @@ app.use("/api/appointment",AppointRouter)
 
 
 //connect database
-ConnectDB()
+const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI;
+
+// Connect to MongoDB
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
